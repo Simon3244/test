@@ -1,8 +1,6 @@
-# Sample workflow for building and deploying a Next.js site to GitHub Pages
+# Sample workflow for deploying a site to GitHub Pages and running the preset build action
 #
-# To get started with Next.js see: https://nextjs.org/docs/getting-started
-#
-name: Compile typescript and deploy site to Pages
+name: Run build script and deploy site to Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -54,8 +52,8 @@ jobs:
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: Compile typescript with the typescript compiler
-        run: ${{ steps.detect-package-manager.outputs.runner }} tsc
+      - name: Run buildscript
+        run: ${{ steps.detect-package-manager.outputs.manager }} run build
       - name: Delete node modules folder
         run: rm -rf node_modules
       - name: Upload artifact
